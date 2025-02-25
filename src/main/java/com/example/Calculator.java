@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class Calculator {
     private List<String> history = new ArrayList<>();
 
-    // Операции с BigInteger
-
     public BigInteger add(BigInteger a, BigInteger b) {
         BigInteger result = a.add(b);
         saveHistory("Addition", a, b, result);
@@ -47,13 +45,12 @@ public class Calculator {
         if (a.compareTo(BigInteger.ZERO) < 0) {
             throw new ArithmeticException("Square root of negative number is not allowed");
         }
-        // Псевдокод для квадратного корня (в BigInteger можно использовать метод, если поддерживается)
-        BigInteger result = a.sqrt(); // Требуется JDK >= 15
+        BigInteger result = a.sqrt(); 
         saveHistory("Square Root", a, BigInteger.ZERO, result);
         return result;
     }
 
-    // Факториал, работающий с BigInteger
+   
     public BigInteger factorial(int n) {
         if (n < 0) {
             throw new ArithmeticException("Factorial of negative number is not allowed");
@@ -66,25 +63,25 @@ public class Calculator {
         return result;
     }
 
-    // Модуль (с BigInteger)
+
     public BigInteger modulus(BigInteger a, BigInteger b) {
         if (b.equals(BigInteger.ZERO)) {
             throw new ArithmeticException("Modulus by zero is not allowed");
         }
         BigInteger result = a.mod(b);
         if (result.compareTo(BigInteger.ZERO) < 0) {
-            result = result.add(b.abs()); // Преобразуем отрицательный остаток в положительный
+            result = result.add(b.abs()); 
         }
         saveHistory("Modulus", a, b, result);
         return result;
     }
 
-    // Метод сохранения истории операций
+  
     private void saveHistory(String operation, BigInteger a, BigInteger b, BigInteger result) {
         System.out.println("Operation: " + operation + " | " + a + " % " + b + " = " + result);
     }
 
-    // Печать истории
+   
     public void printHistory() {
         for (String record : history) {
             System.out.println(record);
